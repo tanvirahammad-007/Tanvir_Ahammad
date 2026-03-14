@@ -1,72 +1,64 @@
 # 🌐 Tanvir Ahammad — Developer Portfolio
 
-A modern, fully responsive personal portfolio website built with pure **HTML, CSS, and JavaScript** — no frameworks, no build tools, just clean vanilla code with high-end animations and a glassmorphism design.
+A modern, fully responsive personal portfolio website built with pure **HTML, CSS, and JavaScript** — no frameworks, no build tools. High-end animations, glassmorphism design, and a premium custom cursor inspired by [suryanshsva.framer.website](https://suryanshsva.framer.website/).
+
+> **v4 — Fully Refactored** — All bugs fixed, responsive on every device, upgraded cursor, production-ready code.
 
 ---
 
 ## 🔗 Live Preview
 
-> Open `index.html` in any browser to run it locally, or deploy it to GitHub Pages / Netlify in minutes.
+Open `index.html` in any browser to run locally, or deploy to GitHub Pages / Netlify in minutes.
 
 ---
 
-## 📸 Preview
-
-```
-┌─────────────────────────────────────────────┐
-│  < TA />   Home  About  Skills  Projects ...│  ← Navbar
-├─────────────────────────────────────────────┤
-│                                             │
-│   Hello, I'm                                │
-│   Tanvir Ahammad          [ Photo ]         │  ← Hero
-│   I build beautiful UIs.                    │
-│                                             │
-├─────────────────────────────────────────────┤
-│  About  │  Skills  │  Projects  │  Contact  │
-└─────────────────────────────────────────────┘
-```
-
----
-
-## ✨ Features
+## ✨ All Features
 
 ### 🎨 Design
 - Dark glassmorphism theme (`#050810` background, frosted glass cards)
 - Teal (`#00f5d4`) + Violet (`#7b61ff`) dual-accent color system
-- Animated gradient background orbs
-- Floating particle canvas with connecting lines
+- Animated gradient background orbs with parallax
+- Floating particle canvas with connecting lines (desktop only)
 - Animated gradient border ring on profile photo
 - Smooth scroll reveal animations (fade + slide on every section)
 
 ### 🖱️ Interactions
-- Custom cursor with lagged ring follow and hover-expand effect
-- 3D tilt effect on project cards and profile image (mouse tracking)
+- **Premium two-part custom cursor** — instant dot + lagging ring with blend mode
+- 3D tilt effect on project cards and profile image
 - Typing animation in hero section (5 rotating phrases)
-- Animated counter numbers (About section stats)
-- Animated skill progress bars with glow tip
+- Animated counter numbers in About section
+- Animated skill bars with glow tip
 - Skill category tabs (Frontend / Backend / Tools & Cloud)
 - Floating tech pill cloud with hover glow
 - Page loading animation with progress bar
 
 ### 📱 Responsive Design
-- Fully optimized for all screen sizes:
-  - Mobile: 320px – 480px
-  - Large phones: 480px – 768px
-  - Tablets: 768px – 1024px
-  - Desktop: 1024px+
-- Hamburger menu with smooth full-screen mobile overlay
-- Touch-friendly tap targets (min 44px)
+- Fully optimized for all screen sizes: Mobile (320px+), Tablet, Laptop, Large Desktop
+- Hamburger menu with smooth full-screen mobile overlay + close button
+- Touch-friendly tap targets (min 44px–52px)
 - iOS zoom prevention on form inputs
 - Safe area insets for notched phones
 - Reduced particle count on mobile for performance
+- Particles disabled on screens under 480px
 
 ### ⚡ Performance
 - Google Fonts loaded asynchronously (never blocks render)
-- Particles disabled below 480px width
-- Particle connections disabled on mobile
-- Parallax effects disabled on mobile
+- Canvas RAF paused when tab hidden
 - All 3D tilt effects skipped on touch devices
-- `prefers-reduced-motion` media query respected
+- Scroll listeners use `{ passive: true }`
+- `unobserve()` after scroll reveal fires (no wasted observers)
+- Debounced resize handler for particles
+
+### ♿ Accessibility
+- Semantic HTML5 (`<nav>`, `<section>`, `<footer>`, `<form>`, `<article>`)
+- ARIA roles on tabs (`role="tablist"`, `role="tab"`, `role="tabpanel"`)
+- `aria-label` on all icon-only buttons
+- `aria-hidden="true"` on all decorative elements
+- `aria-expanded` + focus management on mobile menu
+- `prefers-reduced-motion` disables all animations
+- `role="progressbar"` on skill bars
+- Form labels properly linked via `for`/`id`
+- `aria-live="polite"` on typing text + form success message
 
 ---
 
@@ -74,13 +66,12 @@ A modern, fully responsive personal portfolio website built with pure **HTML, CS
 
 ```
 Tanvir_Ahammad/
-│
-├── index.html       ← Full website markup (893 lines)
-├── style.css        ← All styles + animations + responsive (2012 lines)
-├── script.js        ← All interactions + effects (471 lines)
-├── myphoto.jpg      ← Profile photo (place in same folder)
-├── favicon.png      ← Icon
-├── music.mp3 
+├── index.html    ← Semantic markup, ARIA attributes, no inline scripts
+├── style.css     ← Design tokens, glassmorphism, animations, responsive
+├── script.js     ← All interactions (cursor, particles, tabs, music, etc.)
+├── myphoto.jpg   ← Profile photo (same folder)
+├── music.mp3     ← Background lo-fi music (same folder)
+├── favicon.png   ← Browser icon
 └── README.md
 ```
 
@@ -88,13 +79,13 @@ Tanvir_Ahammad/
 
 ## 🗂️ Sections
 
-| # | Section | Description |
-|---|---------|-------------|
-| 01 | **Hero** | Name, animated typing role, profile photo, CTA buttons, social links |
-| 02 | **About** | Bio, animated stat counters (Projects, Languages, Problems Solved, Years) |
-| 03 | **Skills** | Tabbed skill bars (Frontend / Backend / Tools) + floating tech pill cloud |
-| 04 | **Projects** | 6 real project cards with mockup visuals, tags, GitHub & Live links |
-| 05 | **Experience** | Vertical animated timeline (internship + education) |
+| # | Section     | Description |
+|---|-------------|-------------|
+| 01 | **Hero**    | Name, animated typing role, profile photo, CTA buttons, social links |
+| 02 | **About**   | Bio, animated stat counters (Projects, Languages, Problems Solved, Years) |
+| 03 | **Skills**  | Tabbed skill bars (Frontend / Backend / Tools) + floating tech pill cloud |
+| 04 | **Projects**| 6 project cards with mockup visuals, tags, GitHub & Live links |
+| 05 | **Experience**| Vertical animated timeline (internship + education) |
 | 06 | **Contact** | Info cards, social links, contact form with send animation |
 
 ---
@@ -107,33 +98,29 @@ Tanvir_Ahammad/
 | **Pig Dice Game** | HTML, CSS, JavaScript | [GitHub](https://github.com/tanvirahammad-007/Pig-Dice-Game) · [Live](https://tanvirahammad-007.github.io/Pig-Dice-Game/) |
 | **Words to Inspire** | HTML, CSS, JavaScript | [GitHub](https://github.com/tanvirahammad-007/Words-to-Inspire) · [Live](https://tanvirahammad-007.github.io/Words-to-Inspire/) |
 | **TicTacToe — Offline** | HTML, CSS, JS, Minimax AI | [GitHub](https://github.com/tanvirahammad-007/Tic-Tac-Toe) · [Live](https://tanvirahammad-007.github.io/Tic-Tac-Toe/) |
-| **TicTacToe — Online** | JavaScript, Firebase, Netlify, Render | [GitHub](https://github.com/tanvirahammad-007/Tic-Tac-Toe) · [Play](https://team-believers.netlify.app/) |
+| **TicTacToe — Online** | JavaScript, Firebase, Netlify | [GitHub](https://github.com/tanvirahammad-007/Tic-Tac-Toe) · [Play](https://team-believers.netlify.app/) |
 | **CodeAlpha C++ Projects** | C++, STL, OOP, Algorithms | [GitHub](https://github.com/tanvirahammad-007/CodeAlpha_Projects) |
 
 ---
 
 ## 🛠️ Tech Stack
 
-This portfolio itself is built with:
-
 | Technology | Purpose |
 |-----------|---------|
-| HTML5 | Semantic structure |
-| CSS3 | Styling, animations, grid, flexbox, media queries |
-| Vanilla JavaScript (ES6+) | All interactivity, canvas particles, scroll effects |
-| Google Fonts | Syne (display) · DM Mono (code) · DM Sans (body) |
+| HTML5 | Semantic structure, ARIA |
+| CSS3 | Glassmorphism, animations, grid, clamp(), custom properties |
+| Vanilla JavaScript (ES6+) | All interactions, canvas, cursor, scroll effects |
+| Google Fonts | Syne · DM Mono · DM Sans |
 | Canvas API | Animated floating particles |
-| CSS Custom Properties | Design token system (colors, spacing, fonts) |
-| IntersectionObserver API | Scroll reveal animations |
-| RequestAnimationFrame | Smooth cursor, particle, and counter animations |
+| CSS Custom Properties | Full design token system |
+| IntersectionObserver API | Scroll reveal + active nav link |
+| RequestAnimationFrame | Cursor, particles, counters |
 
 **No frameworks. No build tools. No dependencies.**
 
 ---
 
 ## 🚀 Getting Started
-
-### Run Locally
 
 ```bash
 # 1. Clone the repository
@@ -142,61 +129,47 @@ git clone https://github.com/tanvirahammad-007/portfolio.git
 # 2. Navigate into the folder
 cd portfolio
 
-# 3. Open in browser
-# Option A: Double-click index.html
-# Option B: Use VS Code Live Server extension
-# Option C: Use a local server
+# 3. Open in browser (Option A: double-click index.html)
+# Option B: VS Code Live Server extension
+# Option C: local server
 npx serve .
 ```
 
 ### Deploy to GitHub Pages
 
-```bash
-# 1. Push your code to a GitHub repository
-
-# 2. Go to Settings → Pages
-
-# 3. Set Source to "Deploy from a branch" → main → / (root)
-
-# 4. Your site will be live at:
-#    https://yourusername.github.io/repository-name/
-```
+1. Push to a GitHub repository
+2. Settings → Pages → Deploy from branch → main → / (root)
+3. Live at `https://yourusername.github.io/repository-name/`
 
 ### Deploy to Netlify
 
-```bash
-# Option A: Drag & drop the folder at netlify.com/drop
-
-# Option B: Connect your GitHub repo at netlify.com
-# Build command: (leave empty)
-# Publish directory: . (or your folder)
-```
+Drag & drop the folder at [netlify.com/drop](https://netlify.com/drop), or connect your GitHub repo (no build command needed).
 
 ---
 
-## 🎨 Customization Guide
+## 🎨 Customization
 
-### Change Your Name
-In `index.html`, search for `Tanvir Ahammad` and replace with your name. Also update the `<title>` tag and the `<TA/>` logo initials.
+### Change Name
+Search `Tanvir Ahammad` in `index.html` and replace. Also update `<title>` and `<TA/>` logo initials.
 
-### Change Your Photo
-Replace `myphoto.jpg` with your own photo file. Keep the same filename, or update the `src` in `index.html`:
+### Change Photo
+Replace `myphoto.jpg` in the same folder. Update `src` if using a different filename:
 ```html
 <img src="your-photo.jpg" alt="Your Name" class="profile-photo" />
 ```
 
-### Change Color Accent
-In `style.css`, update the CSS variables at the top:
+### Change Accent Colors
+Edit CSS variables in `style.css`:
 ```css
 :root {
-  --accent:   #00f5d4;  /* main teal color */
-  --accent-2: #7b61ff;  /* violet accent */
-  --accent-3: #ff6b6b;  /* coral accent */
+  --accent:   #00f5d4;  /* main teal */
+  --accent-2: #7b61ff;  /* violet */
+  --accent-3: #ff6b6b;  /* coral */
 }
 ```
 
 ### Add / Edit Skills
-Find the skills section in `index.html` and edit `data-width` (0–100) and the label:
+In `index.html`, update `data-width` (0–100) and label:
 ```html
 <div class="skill-meta">
   <span class="skill-name">Your Skill</span>
@@ -207,55 +180,11 @@ Find the skills section in `index.html` and edit `data-width` (0–100) and the 
 </div>
 ```
 
-### Add a New Project Card
-Copy any existing project card block in `index.html` and update the title, description, tags, GitHub URL, and live URL.
+### Add a Project Card
+Copy any `<article class="project-card ...">` block in `index.html` and update the content.
 
 ### Update Contact Info
-Search for `Barura, Cumilla, Bangladesh` and `tanvirahammad890@gmail.com` in `index.html` to update your location and email.
-
----
-
-## 📐 CSS Architecture
-
-```
-style.css
-│
-├── CSS Variables (design tokens)
-├── Reset & Base styles
-├── Scrollbar styling
-├── Loader animation
-├── Custom cursor
-├── Particles canvas
-├── Navigation (desktop + mobile menu)
-├── Layout helpers (.container, .glass, .btn)
-├── Scroll reveal animations
-├── Hero section
-├── About section
-├── Skills section (tabs + bars + pill cloud)
-├── Projects section (cards + mockups)
-├── Experience timeline
-├── Contact section (grid + form)
-├── Footer
-├── Responsive — 1200px+ (large desktop)
-├── Responsive — max 1024px (tablet)
-├── Responsive — max 768px (mobile)
-├── Responsive — max 480px (small mobile)
-├── hover: none (touch devices)
-└── prefers-reduced-motion (accessibility)
-```
-
----
-
-## ♿ Accessibility
-
-- Semantic HTML5 elements (`<nav>`, `<section>`, `<footer>`, `<form>`)
-- `aria-label` on hamburger button
-- `alt` text on all images
-- Minimum 44px tap targets on mobile
-- `prefers-reduced-motion` disables all animations for users who prefer it
-- Form labels linked to inputs via `for`/`id` attributes
-- Sufficient color contrast on all text elements
-- Keyboard navigation support (Escape closes mobile menu)
+Search for `tanvirahammad890@gmail.com` and `Barura, Cumilla, Bangladesh` in `index.html`.
 
 ---
 
@@ -272,9 +201,7 @@ style.css
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
-
-Feel free to use this as a template for your own portfolio — just replace the personal info, projects, and photo with your own.
+Open source under the [MIT License](LICENSE). Feel free to use as a template — replace personal info, projects, and photo with your own.
 
 ---
 

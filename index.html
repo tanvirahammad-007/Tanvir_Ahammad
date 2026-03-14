@@ -4,9 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tanvir Ahammad — Computer Science student and developer. Building C/C++ projects, web applications, and software solutions." />
+  <meta name="theme-color" content="#050810" />
   <title>Tanvir Ahammad — Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Load Google Fonts async so they never block page render -->
+
+  <!-- Google Fonts — async load, never blocks render -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style"
@@ -20,139 +29,178 @@
 
 <body>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════
        PAGE LOADER
-  ═══════════════════════════════════════════════ -->
-  <div id="loader">
+  ══════════════════════════════════════════════════ -->
+  <div id="loader" role="status" aria-label="Loading portfolio">
     <div class="loader-inner">
+      <div class="loader-logo"><span class="logo-bracket">&lt;</span>TA<span class="logo-bracket">/&gt;</span></div>
       <span class="loader-bar"></span>
       <p class="loader-text">Initializing<span class="loader-dots">...</span></p>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       CUSTOM CURSOR
-  ═══════════════════════════════════════════════ -->
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
+  <!-- ══════════════════════════════════════════════════
+       CUSTOM CURSOR  (desktop only — hidden on touch)
+  ══════════════════════════════════════════════════ -->
+  <div id="cursor-dot"   aria-hidden="true"></div>
+  <div id="cursor-ring"  aria-hidden="true"></div>
 
-  <!-- ═══════════════════════════════════════════════
-       FLOATING PARTICLES CANVAS
-  ═══════════════════════════════════════════════ -->
-  <canvas id="particles-canvas"></canvas>
+  <!-- ══════════════════════════════════════════════════
+       PARTICLES CANVAS
+  ══════════════════════════════════════════════════ -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════
        NAVIGATION
-  ═══════════════════════════════════════════════ -->
-  <nav id="navbar">
-    <div class="nav-logo">
+  ══════════════════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo" aria-label="Tanvir Ahammad - Home">
       <span class="logo-bracket">&lt;</span>TA<span class="logo-bracket">/&gt;</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#hero" class="nav-link active">Home</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#hero"       class="nav-link active">Home</a></li>
+      <li><a href="#about"      class="nav-link">About</a></li>
+      <li><a href="#skills"     class="nav-link">Skills</a></li>
+      <li><a href="#projects"   class="nav-link">Projects</a></li>
       <li><a href="#experience" class="nav-link">Experience</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="#contact"    class="nav-link">Contact</a></li>
     </ul>
-    <button class="nav-cta" onclick="scrollToSection('contact')">Hire Me</button>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+
+    <div class="nav-right">
+      <!-- Hire Me CTA -->
+      <a href="#contact" class="nav-cta">Hire Me</a>
+
+      <!-- Music Player -->
+      <button class="music-btn" id="music-btn" aria-label="Play background music" title="Toggle music (M key)">
+        <svg class="music-icon icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
+        </svg>
+        <span class="music-bars" aria-hidden="true">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </span>
+        <span class="music-ripple" aria-hidden="true"></span>
+      </button>
+
+      <!-- Audio element — music.mp3 in same folder -->
+      <audio id="bg-music" loop preload="none">
+        <source src="music.mp3" type="audio/mpeg" />
+        <source src="music.ogg" type="audio/ogg" />
+      </audio>
+
+      <!-- Hamburger (mobile only) -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
   </nav>
 
-  <!-- Mobile menu overlay -->
-  <div class="mobile-menu" id="mobile-menu">
-    <ul>
-      <li><a href="#hero" class="mobile-link">Home</a></li>
-      <li><a href="#about" class="mobile-link">About</a></li>
-      <li><a href="#skills" class="mobile-link">Skills</a></li>
-      <li><a href="#projects" class="mobile-link">Projects</a></li>
+  <!-- Mobile overlay menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <ul role="list">
+      <li><a href="#hero"       class="mobile-link">Home</a></li>
+      <li><a href="#about"      class="mobile-link">About</a></li>
+      <li><a href="#skills"     class="mobile-link">Skills</a></li>
+      <li><a href="#projects"   class="mobile-link">Projects</a></li>
       <li><a href="#experience" class="mobile-link">Experience</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
+      <li><a href="#contact"    class="mobile-link">Contact</a></li>
     </ul>
+    <div class="mobile-socials">
+      <a href="https://github.com/tanvirahammad-007"                       target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
+      <a href="https://www.linkedin.com/in/tanvir-ahammad-007-975970388/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LI</a>
+      <a href="https://x.com/AhammadTan94659"                             target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">X</a>
+    </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════
        HERO SECTION
-  ═══════════════════════════════════════════════ -->
-  <section id="hero">
-    <!-- Animated gradient orbs in background -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+  ══════════════════════════════════════════════════ -->
+  <section id="hero" aria-labelledby="hero-heading">
+    <!-- Animated gradient orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
 
     <div class="hero-content">
       <div class="hero-text">
         <p class="hero-greeting reveal-up">
-          <span class="greeting-line"></span>
+          <span class="greeting-line" aria-hidden="true"></span>
           Hello, I'm
         </p>
-        <h1 class="hero-name reveal-up delay-1">Tanvir Ahammad</h1>
-        <div class="hero-role reveal-up delay-2">
+        <h1 id="hero-heading" class="hero-name reveal-up delay-1">Tanvir Ahammad</h1>
+
+        <div class="hero-role reveal-up delay-2" aria-live="polite">
           <span class="role-prefix">I build </span>
           <span class="typing-wrapper">
-            <span id="typing-text"></span>
-            <span class="cursor-blink">|</span>
+            <span id="typing-text" aria-label="animated role text"></span>
+            <span class="cursor-blink" aria-hidden="true">|</span>
           </span>
         </div>
+
         <p class="hero-bio reveal-up delay-3">
-          I build Software & Web Applications. <br>
           Aspiring Computer Science student passionate about building software
           and solving real-world problems through code.
         </p>
+
         <div class="hero-cta reveal-up delay-4">
-          <button class="btn btn-primary" onclick="scrollToSection('projects')">
+          <a href="#projects" class="btn btn-primary">
             <span>View Projects</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </button>
-          <button class="btn btn-ghost" onclick="scrollToSection('contact')">
-            Let's Talk
-          </button>
+          </a>
+          <a href="#contact" class="btn btn-ghost">Let's Talk</a>
         </div>
+
         <!-- Social quick-links -->
         <div class="hero-socials reveal-up delay-5">
-          <a href="https://github.com/tanvirahammad-007" target="_blank" class="social-dot" title="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+          <a href="https://github.com/tanvirahammad-007" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="GitHub profile">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
             </svg>
           </a>
-          <a href="https://www.linkedin.com/in/tanvir-ahammad-007-975970388/" target="_blank" class="social-dot"
-            title="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          <a href="https://www.linkedin.com/in/tanvir-ahammad-007-975970388/" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="LinkedIn profile">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
           </a>
-          <a href="https://x.com/AhammadTan94659" target="_blank" class="social-dot" title="Twitter/X">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          <a href="https://x.com/AhammadTan94659" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="Twitter/X profile">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </a>
         </div>
       </div>
 
-      <!-- Profile image with glow + 3D tilt -->
-      <div class="hero-image reveal-right delay-2" id="hero-tilt">
-        <div class="image-frame">
-          <div class="image-glow"></div>
-          <img src="myphoto.jpg" alt="Tanvir Ahammad" class="profile-photo" />
-          <div class="image-border-animated"></div>
+      <!-- Profile image with animated border + 3D tilt -->
+      <div class="hero-image reveal-right delay-2">
+        <div class="image-frame" id="hero-tilt">
+          <div class="image-glow" aria-hidden="true"></div>
+          <img src="myphoto.jpg" alt="Portrait of Tanvir Ahammad" class="profile-photo" loading="eager" />
+          <div class="image-border-animated" aria-hidden="true"></div>
         </div>
-        <!-- Floating badge chips around image -->
-        <div class="float-badge badge-1">⚡ Open to Work</div>
-        <div class="float-badge badge-2">🚀 Coding is fun</div>
-        <div class="float-badge badge-3">🏆 10+ Projects</div>
+        <!-- Floating badge chips -->
+        <div class="float-badge badge-1" aria-hidden="true">⚡ Open to Work</div>
+        <div class="float-badge badge-2" aria-hidden="true">🚀 Coding is fun</div>
+        <div class="float-badge badge-3" aria-hidden="true">🏆 10+ Projects</div>
       </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="scroll-indicator">
+    <div class="scroll-indicator" aria-hidden="true">
       <span>Scroll</span>
       <div class="scroll-line">
         <div class="scroll-dot"></div>
@@ -160,14 +208,14 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════
        ABOUT SECTION
-  ═══════════════════════════════════════════════ -->
-  <section id="about">
+  ══════════════════════════════════════════════════ -->
+  <section id="about" aria-labelledby="about-heading">
     <div class="container">
       <div class="section-header">
         <span class="section-tag reveal-up">01 / About</span>
-        <h2 class="section-title reveal-up delay-1">Who I Am</h2>
+        <h2 id="about-heading" class="section-title reveal-up delay-1">Who I Am</h2>
       </div>
 
       <div class="about-grid">
@@ -177,45 +225,40 @@
             and exploring how things work under the hood. I enjoy turning ideas into practical
             applications through clean and efficient code.
           </p>
-
           <p>
             My journey started with learning programming fundamentals and problem solving.
             Today, I build projects using <strong>C/C++ and web technologies</strong>, constantly
             improving my understanding of software development and system design.
           </p>
-
           <p>
-            When I'm not coding, you'll find me solving programming problems, exploring new
-            technologies, or working on projects that challenge my skills and curiosity.
+            When I'm not coding, you'll find me solving programming challenges, exploring new
+            technologies, or working on projects that push my skills and curiosity.
           </p>
-          <a href="#" class="btn btn-primary" style="margin-top:2rem; display:inline-flex;">
+          <a href="#" class="btn btn-primary" style="margin-top:2rem;" download>
             <span>Download Resume</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
             </svg>
           </a>
         </div>
 
-        <!-- Animated stats counters -->
+        <!-- Animated stat counters -->
         <div class="about-stats reveal-right">
           <div class="stat-card glass">
             <span class="stat-number" data-target="10">0</span>
             <span class="stat-plus">+</span>
             <p class="stat-label">Projects Built</p>
           </div>
-
           <div class="stat-card glass">
             <span class="stat-number" data-target="3">0</span>
             <span class="stat-plus">+</span>
             <p class="stat-label">Languages Learned</p>
           </div>
-
           <div class="stat-card glass">
             <span class="stat-number" data-target="250">0</span>
             <span class="stat-plus">+</span>
             <p class="stat-label">Problems Solved</p>
           </div>
-
           <div class="stat-card glass">
             <span class="stat-number" data-target="1">0</span>
             <span class="stat-plus">+</span>
@@ -226,234 +269,187 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════
        SKILLS SECTION
-  ═══════════════════════════════════════════════ -->
-  <section id="skills">
+  ══════════════════════════════════════════════════ -->
+  <section id="skills" aria-labelledby="skills-heading">
     <div class="container">
       <div class="section-header">
         <span class="section-tag reveal-up">02 / Skills</span>
-        <h2 class="section-title reveal-up delay-1">Tech Arsenal</h2>
+        <h2 id="skills-heading" class="section-title reveal-up delay-1">Tech Arsenal</h2>
       </div>
 
       <!-- Skill category tabs -->
-      <div class="skills-tabs reveal-up delay-2">
-        <button class="tab-btn active" data-tab="frontend">Frontend</button>
-        <button class="tab-btn" data-tab="backend">Backend</button>
-        <button class="tab-btn" data-tab="tools">Tools & Cloud</button>
+      <div class="skills-tabs reveal-up delay-2" role="tablist" aria-label="Skill categories">
+        <button class="tab-btn active" data-tab="frontend" role="tab" aria-selected="true"  aria-controls="tab-frontend" id="tab-btn-frontend">Frontend</button>
+        <button class="tab-btn"        data-tab="backend"  role="tab" aria-selected="false" aria-controls="tab-backend"  id="tab-btn-backend">Backend</button>
+        <button class="tab-btn"        data-tab="tools"    role="tab" aria-selected="false" aria-controls="tab-tools"    id="tab-btn-tools">Tools &amp; Cloud</button>
       </div>
 
-      <!-- Skill bar groups -->
       <div class="skills-content">
         <!-- FRONTEND -->
-        <div class="tab-pane active" id="tab-frontend">
+        <div class="tab-pane active" id="tab-frontend" role="tabpanel" aria-labelledby="tab-btn-frontend">
           <div class="skills-bars">
-
             <div class="skill-item reveal-up">
               <div class="skill-meta">
-                <span class="skill-name">HTML</span>
+                <span class="skill-name">HTML5</span>
                 <span class="skill-pct">75%</span>
               </div>
-              <div class="skill-bar">
+              <div class="skill-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="HTML5 skill level 75%">
                 <div class="skill-fill" data-width="75"></div>
               </div>
             </div>
-
             <div class="skill-item reveal-up delay-1">
               <div class="skill-meta">
-                <span class="skill-name">CSS</span>
+                <span class="skill-name">CSS3</span>
                 <span class="skill-pct">60%</span>
               </div>
-              <div class="skill-bar">
+              <div class="skill-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="CSS3 skill level 60%">
                 <div class="skill-fill" data-width="60"></div>
               </div>
             </div>
-
             <div class="skill-item reveal-up delay-2">
               <div class="skill-meta">
                 <span class="skill-name">JavaScript</span>
                 <span class="skill-pct">70%</span>
               </div>
-              <div class="skill-bar">
+              <div class="skill-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript skill level 70%">
                 <div class="skill-fill" data-width="70"></div>
               </div>
             </div>
-
-
-            <!-- others remain but 0% -->
-
             <div class="skill-item reveal-up delay-3">
               <div class="skill-meta">
                 <span class="skill-name">React / Next.js</span>
-                <span class="skill-pct">0%</span>
+                <span class="skill-pct">Learning</span>
               </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-width="0"></div>
-              </div>
-            </div>
-
-            <div class="skill-item reveal-up delay-4">
-              <div class="skill-meta">
-                <span class="skill-name">Three.js / WebGL</span>
-                <span class="skill-pct">0%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-width="0"></div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" aria-label="React / Next.js - learning">
+                <div class="skill-fill skill-fill--learning" data-width="5"></div>
               </div>
             </div>
-
           </div>
         </div>
 
         <!-- BACKEND -->
-        <div class="tab-pane" id="tab-backend">
+        <div class="tab-pane" id="tab-backend" role="tabpanel" aria-labelledby="tab-btn-backend" hidden>
           <div class="skills-bars">
-
             <div class="skill-item reveal-up">
               <div class="skill-meta">
                 <span class="skill-name">C</span>
                 <span class="skill-pct">75%</span>
               </div>
-              <div class="skill-bar">
+              <div class="skill-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-fill" data-width="75"></div>
               </div>
             </div>
-
             <div class="skill-item reveal-up delay-1">
               <div class="skill-meta">
                 <span class="skill-name">C++</span>
                 <span class="skill-pct">70%</span>
               </div>
-              <div class="skill-bar">
+              <div class="skill-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-fill" data-width="70"></div>
               </div>
             </div>
-
-            <!-- others stay but 0% -->
-
             <div class="skill-item reveal-up delay-2">
               <div class="skill-meta">
                 <span class="skill-name">Node.js / Express</span>
-                <span class="skill-pct">0%</span>
+                <span class="skill-pct">Learning</span>
               </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-width="0"></div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-fill skill-fill--learning" data-width="5"></div>
               </div>
             </div>
-
             <div class="skill-item reveal-up delay-3">
               <div class="skill-meta">
-                <span class="skill-name">Python / FastAPI</span>
-                <span class="skill-pct">0%</span>
+                <span class="skill-name">Python</span>
+                <span class="skill-pct">Learning</span>
               </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-width="0"></div>
-              </div>
-            </div>
-            <div class="skill-item reveal-up delay-2">
-              <div class="skill-meta"><span class="skill-name">PostgreSQL / MongoDB</span><span
-                  class="skill-pct">0%</span></div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-width="0"></div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-fill skill-fill--learning" data-width="5"></div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- TOOLS -->
-        <div class="tab-pane" id="tab-tools">
+        <div class="tab-pane" id="tab-tools" role="tabpanel" aria-labelledby="tab-btn-tools" hidden>
           <div class="skills-bars">
-
-            <div class="skill-item reveal-up delay-3">
+            <div class="skill-item reveal-up">
               <div class="skill-meta">
                 <span class="skill-name">Git / GitHub</span>
                 <span class="skill-pct">85%</span>
               </div>
-              <div class="skill-bar">
+              <div class="skill-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-fill" data-width="85"></div>
               </div>
             </div>
-
-            <div class="skill-item reveal-up delay-4">
+            <div class="skill-item reveal-up delay-1">
               <div class="skill-meta">
                 <span class="skill-name">Figma / Design Systems</span>
                 <span class="skill-pct">65%</span>
               </div>
-              <div class="skill-bar">
+              <div class="skill-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-fill" data-width="65"></div>
               </div>
             </div>
-
-            <div class="skill-item reveal-up">
-              <div class="skill-meta">
-                <span class="skill-name">AWS / Vercel / GCP</span>
-                <span class="skill-pct">0%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-width="0"></div>
-              </div>
-            </div>
-
-            <div class="skill-item reveal-up delay-1">
-              <div class="skill-meta">
-                <span class="skill-name">Docker / Kubernetes</span>
-                <span class="skill-pct">0%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-width="0"></div>
-              </div>
-            </div>
-
             <div class="skill-item reveal-up delay-2">
               <div class="skill-meta">
-                <span class="skill-name">CI/CD Pipelines</span>
-                <span class="skill-pct">0%</span>
+                <span class="skill-name">VS Code / Neovim</span>
+                <span class="skill-pct">80%</span>
               </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-width="0"></div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-fill" data-width="80"></div>
               </div>
             </div>
-
-
+            <div class="skill-item reveal-up delay-3">
+              <div class="skill-meta">
+                <span class="skill-name">Linux / Bash</span>
+                <span class="skill-pct">60%</span>
+              </div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-fill" data-width="60"></div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Tech icon cloud -->
-        <div class="tech-cloud reveal-up">
-          <div class="tech-pill">C</div>
-          <div class="tech-pill">C++</div>
-          <div class="tech-pill">HTML</div>
-          <div class="tech-pill">CSS</div>
-          <div class="tech-pill">Next.js</div>
-          <div class="tech-pill">Python</div>
-          <div class="tech-pill">React</div>
-          <div class="tech-pill">PostgreSQL</div>
-          <div class="tech-pill">TypeScript</div>
-          <div class="tech-pill">Node.js</div>
-          <div class="tech-pill">GraphQL</div>
-          <div class="tech-pill">Tailwind</div>
+        <div class="tech-cloud reveal-up" aria-label="Technologies">
+          <span class="tech-pill">C</span>
+          <span class="tech-pill">C++</span>
+          <span class="tech-pill">HTML5</span>
+          <span class="tech-pill">CSS3</span>
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">Node.js</span>
+          <span class="tech-pill">Git</span>
+          <span class="tech-pill">GitHub</span>
+          <span class="tech-pill">Figma</span>
+          <span class="tech-pill">Linux</span>
+          <span class="tech-pill">Firebase</span>
+          <span class="tech-pill">Tailwind</span>
         </div>
       </div>
-    </div><!-- /.container -->
+    </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════
        PROJECTS SECTION
-  ═══════════════════════════════════════════════ -->
-  <section id="projects">
+  ══════════════════════════════════════════════════ -->
+  <section id="projects" aria-labelledby="projects-heading">
     <div class="container">
       <div class="section-header">
         <span class="section-tag reveal-up">03 / Projects</span>
-        <h2 class="section-title reveal-up delay-1">Selected Work</h2>
+        <h2 id="projects-heading" class="section-title reveal-up delay-1">Selected Work</h2>
       </div>
 
       <div class="projects-grid">
 
         <!-- 1. Guess The Number -->
-        <div class="project-card tilt-card reveal-up">
+        <article class="project-card tilt-card reveal-up">
           <div class="project-card-inner">
-            <div class="project-thumbnail" style="--accent:#00f5d4">
-
+            <div class="project-thumbnail" style="--project-accent:#00f5d4">
               <div class="project-mockup">
                 <div class="mock-guess">
                   <div class="guess-title">Guess My Number!</div>
@@ -461,342 +457,263 @@
                   <div class="guess-score">🎗️ Score: 20 &nbsp; 🥇 High: 0</div>
                 </div>
               </div>
-              <div class="project-glow" style="background: radial-gradient(circle, #00f5d420, transparent 70%)"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(0,245,212,0.2),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
               </div>
               <h3 class="project-title">Guess The Number</h3>
-              <p class="project-desc">An interactive number-guessing game where players try to guess a secret number
-                between 1–20. Tracks score and highscore with instant win/lose feedback and smooth UI.</p>
+              <p class="project-desc">A fun number-guessing browser game with score tracking and high score persistence. Features animated feedback and clean UI.</p>
               <div class="project-links">
-
-                <a href="https://github.com/tanvirahammad-007/Guess-The-Number" class="project-link" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Guess-The-Number" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-
-                <a href="https://tanvirahammad-007.github.io/Guess-The-Number/" class="project-link live"
-                  target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://tanvirahammad-007.github.io/Guess-The-Number/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Live Demo
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- 2. Pig Dice Game -->
-        <div class="project-card tilt-card reveal-up delay-1">
+        <article class="project-card tilt-card reveal-up delay-1">
           <div class="project-card-inner">
-            <div class="project-thumbnail" style="--accent:#f7931a">
-
+            <div class="project-thumbnail" style="--project-accent:#f7931a">
               <div class="project-mockup">
                 <div class="mock-pig">
                   <div class="pig-player active">
-                    <span class="pig-label">Player 1</span>
-                    <span class="pig-score">43</span>
+                    <div class="pig-label">Player 1</div>
+                    <div class="pig-score">47</div>
+                    <div class="pig-label">Current: 5</div>
                   </div>
                   <div class="pig-center">🎲</div>
                   <div class="pig-player">
-                    <span class="pig-label">Player 2</span>
-                    <span class="pig-score">24</span>
+                    <div class="pig-label">Player 2</div>
+                    <div class="pig-score">32</div>
+                    <div class="pig-label">Current: 0</div>
                   </div>
                 </div>
               </div>
-              <div class="project-glow" style="background: radial-gradient(circle, #f7931a20, transparent 70%)"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(247,147,26,0.2),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
               </div>
               <h3 class="project-title">Pig Dice Game</h3>
-              <p class="project-desc">A two-player dice game where each player rolls to accumulate points but must hold
-                before rolling a 1 — or lose their turn score. Clean game logic with animated dice.</p>
+              <p class="project-desc">A two-player dice game with strategic hold/roll mechanics. First to 100 wins. Clean state management and smooth animations.</p>
               <div class="project-links">
-
-                <a href="https://github.com/tanvirahammad-007/Pig-Dice-Game" class="project-link" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Pig-Dice-Game" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-
-                <a href="https://tanvirahammad-007.github.io/Pig-Dice-Game/" class="project-link live" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://tanvirahammad-007.github.io/Pig-Dice-Game/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Live Demo
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- 3. Words to Inspire -->
-        <div class="project-card tilt-card reveal-up delay-2">
+        <article class="project-card tilt-card reveal-up delay-2">
           <div class="project-card-inner">
-            <div class="project-thumbnail" style="--accent:#a8ff78">
-
+            <div class="project-thumbnail" style="--project-accent:#a8ff78">
               <div class="project-mockup">
                 <div class="mock-words">
-                  <div class="words-badge">💪 Motivational</div>
-                  <div class="words-badge">😂 Funny</div>
-                  <div class="words-badge">🩻 Dark</div>
-                  <div class="words-line w80"></div>
-                  <div class="words-line w60"></div>
+                  <div class="words-badge">✨ Daily Inspiration</div>
+                  <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--text-secondary);line-height:1.5;margin-top:0.4rem;">
+                    "The secret of getting ahead is getting started."
+                  </p>
+                  <div class="words-line" style="width:100%"></div>
+                  <div class="words-line" style="width:70%"></div>
                 </div>
               </div>
-              <div class="project-glow" style="background: radial-gradient(circle, #a8ff7820, transparent 70%)"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(168,255,120,0.15),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
               </div>
               <h3 class="project-title">Words to Inspire</h3>
-              <p class="project-desc">A quote-generator app serving motivational quotes, funny jokes, and dark humor on
-                demand. Features a clean modal-based UI with category selection and smooth transitions.</p>
+              <p class="project-desc">A motivational quote generator that surfaces daily inspiration. Features dynamic quote fetching, sharing options, and a calming interface.</p>
               <div class="project-links">
-
-                <a href="https://github.com/tanvirahammad-007/Words-to-Inspire" class="project-link" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Words-to-Inspire" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-
-                <a href="https://tanvirahammad-007.github.io/Words-to-Inspire/" class="project-link live"
-                  target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://tanvirahammad-007.github.io/Words-to-Inspire/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Live Demo
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- 4. Tic-Tac-Toe Offline (University Project) -->
-        <div class="project-card tilt-card reveal-up delay-1">
+        <!-- 4. TicTacToe Offline (Minimax AI) -->
+        <article class="project-card tilt-card reveal-up">
           <div class="project-card-inner">
-            <div class="project-thumbnail" style="--accent:#7b61ff">
-
+            <div class="project-thumbnail" style="--project-accent:#7b61ff">
               <div class="project-mockup">
                 <div class="mock-ttt">
-                  <div class="ttt-row"><span class="ttt-x">✕</span><span></span><span class="ttt-o">◯</span></div>
-                  <div class="ttt-row"><span></span><span class="ttt-x">✕</span><span></span></div>
-                  <div class="ttt-row"><span class="ttt-o">◯</span><span></span><span class="ttt-x">✕</span></div>
-                  <div class="ttt-label">Neon Pixel-Art • AI opponent</div>
+                  <div class="ttt-grid">
+                    <span>X</span><span></span><span>O</span>
+                    <span></span><span>X</span><span></span>
+                    <span>O</span><span></span><span>X</span>
+                  </div>
+                  <div class="ttt-label">AI: Minimax</div>
                 </div>
               </div>
-              <div class="project-glow" style="background: radial-gradient(circle, #7b61ff20, transparent 70%)"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(123,97,255,0.2),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
-                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span
-                  class="tag">Minimax AI</span>
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span><span class="tag">Minimax AI</span>
               </div>
               <h3 class="project-title">TicTacToe — Offline</h3>
-              <p class="project-desc">University project: A neon pixel-art Tic-Tac-Toe game with AI opponent (Easy /
-                Medium / Hard using Minimax algorithm), local 2-player mode, statistics tracking, and settings panel.
-              </p>
+              <p class="project-desc">Classic TicTacToe with an unbeatable AI opponent powered by the Minimax algorithm. Play solo or challenge a friend in 2-player mode.</p>
               <div class="project-links">
-
-                <a href="https://github.com/tanvirahammad-007/Tic-Tac-Toe" class="project-link" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Tic-Tac-Toe" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-
-                <a href="https://tanvirahammad-007.github.io/Tic-Tac-Toe/" class="project-link live" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://tanvirahammad-007.github.io/Tic-Tac-Toe/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Live Demo
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- 5. Tic-Tac-Toe Online (University Project) -->
-        <div class="project-card tilt-card reveal-up delay-2">
+        <!-- 5. TicTacToe Online (Firebase) -->
+        <article class="project-card tilt-card reveal-up delay-1">
           <div class="project-card-inner">
-            <div class="project-thumbnail" style="--accent:#ff6b6b">
-
+            <div class="project-thumbnail" style="--project-accent:#ff6b6b">
               <div class="project-mockup">
-                <div class="mock-ttt">
-                  <div class="ttt-row"><span class="ttt-x">✕</span><span class="ttt-o">◯</span><span></span></div>
-                  <div class="ttt-row"><span></span><span class="ttt-x">✕</span><span></span></div>
-                  <div class="ttt-row"><span></span><span class="ttt-o">◯</span><span class="ttt-x">✕</span></div>
-                  <div class="ttt-label">🌐 Online Multiplayer • Firebase</div>
+                <div class="mock-online">
+                  <div class="online-header">
+                    <span class="online-dot" aria-hidden="true"></span>
+                    <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent)">2 players online</span>
+                  </div>
+                  <div class="ttt-grid">
+                    <span>X</span><span>O</span><span>X</span>
+                    <span>O</span><span>X</span><span>O</span>
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="ttt-label" style="color:var(--accent-3)">Your turn!</div>
                 </div>
               </div>
-              <div class="project-glow" style="background: radial-gradient(circle, #ff6b6b20, transparent 70%)"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(255,107,107,0.2),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
-                <span class="tag">JavaScript</span><span class="tag">Firebase</span><span
-                  class="tag">Netlify</span><span class="tag">Render</span>
+                <span class="tag">JavaScript</span><span class="tag">Firebase</span><span class="tag">Netlify</span>
               </div>
               <h3 class="project-title">TicTacToe — Online</h3>
-              <p class="project-desc">Extended version of the university project with real-time online multiplayer via
-                Firebase Realtime Database. Create/join game rooms by sharing a code, with Netlify + Render deployment.
-              </p>
+              <p class="project-desc">Real-time multiplayer TicTacToe with Firebase Realtime Database. Create or join rooms and play with friends anywhere in the world.</p>
               <div class="project-links">
-
-                <a href="https://github.com/tanvirahammad-007/Tic-Tac-Toe-Online" class="project-link" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Tic-Tac-Toe" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-
-                <a href="https://team-believers.netlify.app/" class="project-link live" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://team-believers.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Play Online
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- 6. CodeAlpha Internship Projects -->
-        <div class="project-card tilt-card reveal-up delay-3">
+        <!-- 6. CodeAlpha C++ Projects -->
+        <article class="project-card tilt-card reveal-up delay-2">
           <div class="project-card-inner">
-            <div class="project-thumbnail" style="--accent:#00d4ff">
-
+            <div class="project-thumbnail" style="--project-accent:#00f5d4">
               <div class="project-mockup">
-                <div class="mock-api">
-                  <div class="api-line"><span class="method post">C++</span> Internship Projects</div>
-                  <div class="api-line"><span class="method get">STL</span> Algorithms &amp; DS</div>
-                  <div class="api-line"><span class="method get">OOP</span> Object-Oriented</div>
+                <div class="mock-cpp">
+                  <div class="cpp-header">
+                    <span class="cpp-dot dot-r" aria-hidden="true"></span>
+                    <span class="cpp-dot dot-y" aria-hidden="true"></span>
+                    <span class="cpp-dot dot-g" aria-hidden="true"></span>
+                    <span style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-left:0.5rem;">main.cpp</span>
+                  </div>
+                  <div class="cpp-code">
+                    <span class="cpp-keyword">#include</span> <span class="cpp-str">&lt;iostream&gt;</span><br>
+                    <span class="cpp-keyword">int</span> main() {<br>
+                    &nbsp;&nbsp;<span class="cpp-comment">// solve problems</span><br>
+                    &nbsp;&nbsp;<span class="cpp-keyword">return</span> 0;<br>
+                    }
+                  </div>
                 </div>
               </div>
-              <div class="project-glow" style="background: radial-gradient(circle, #00d4ff20, transparent 70%)"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(0,245,212,0.15),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
-                <span class="tag">C++</span><span class="tag">STL</span><span class="tag">OOP</span><span
-                  class="tag">Algorithms</span>
+                <span class="tag">C++</span><span class="tag">STL</span><span class="tag">OOP</span><span class="tag">Algorithms</span>
               </div>
               <h3 class="project-title">CodeAlpha C++ Projects</h3>
-              <p class="project-desc">Collection of C++ projects built during my internship at CodeAlpha. Covers
-                algorithms, data structures, OOP design patterns, and problem-solving tasks with clean, well-documented
-                code.</p>
+              <p class="project-desc">A collection of C++ projects built during the CodeAlpha internship. Covers OOP, STL, algorithms, and core computer science concepts.</p>
               <div class="project-links">
-
-                <a href="https://github.com/tanvirahammad-007/CodeAlpha_Projects" class="project-link" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/CodeAlpha_Projects" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
-      </div>
+      </div><!-- /.projects-grid -->
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════
-       EXPERIENCE / TIMELINE SECTION
-  ═══════════════════════════════════════════════ -->
-  <section id="experience">
+  <!-- ══════════════════════════════════════════════════
+       EXPERIENCE SECTION
+  ══════════════════════════════════════════════════ -->
+  <section id="experience" aria-labelledby="experience-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag reveal-up">04 / Journey</span>
-        <h2 class="section-title reveal-up delay-1">Experience & Education</h2>
+        <span class="section-tag reveal-up">04 / Experience</span>
+        <h2 id="experience-heading" class="section-title reveal-up delay-1">My Journey</h2>
       </div>
 
-      <div class="timeline">
+      <div class="timeline" role="list">
 
-        <!-- <div class="timeline-item reveal-left">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content glass">
-            <span class="timeline-date">2023 — Present</span>
-            <h3 class="timeline-role">Senior Full-Stack Engineer</h3>
-            <p class="timeline-company">⚡ Vercel — San Francisco, CA</p>
-            <p class="timeline-desc">Leading architecture for Next.js infrastructure tooling. Built deployment pipeline
-              used by 300k+ developers globally. Reduced cold-start latency by 40%.</p>
-            <div class="timeline-tags">
-              <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">AWS</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal-right">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content glass">
-            <span class="timeline-date">2021 — 2023</span>
-            <h3 class="timeline-role">Full-Stack Developer</h3>
-            <p class="timeline-company">🚀 Stripe — Remote</p>
-            <p class="timeline-desc">Developed merchant-facing dashboard features. Owned Radar fraud detection UI,
-              processing $900B+ annually. Led accessibility audit resulting in 100 Lighthouse score.</p>
-            <div class="timeline-tags">
-              <span class="tag">React</span><span class="tag">Ruby</span><span class="tag">Payments</span>
-            </div>
-          </div>
-        </div> -->
-
-        <div class="timeline-item reveal-left">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content glass">
-            <span class="timeline-date">2026 — Present</span>
-            <h3 class="timeline-role">C++ Programming Intern</h3>
-            <p class="timeline-company">CodeAlpha, Lucknow U.P</p>
-            <p class="timeline-desc">
-              Working on C++ programming tasks and projects to improve problem-solving
-              and software development skills. Implementing algorithms, debugging code,
-              and building small applications while following clean coding practices.
-            </p>
+        <div class="timeline-item reveal-left" role="listitem">
+          <div class="timeline-dot internship" aria-hidden="true"></div>
+          <div class="timeline-content glass internship-card">
+            <span class="timeline-date">2024</span>
+            <h3 class="timeline-role">C++ Intern — CodeAlpha</h3>
+            <p class="timeline-company">Remote Internship</p>
+            <p class="timeline-desc">Completed a one-month C++ internship where I built multiple projects covering OOP, data structures, and algorithm implementation using STL. Strengthened fundamentals through hands-on coding tasks.</p>
             <div class="timeline-tags">
               <span class="tag">C++</span>
+              <span class="tag">OOP</span>
               <span class="tag">STL</span>
-              <span class="tag">Data Structures</span>
+              <span class="tag">Algorithms</span>
               <span class="tag">Debugging</span>
             </div>
           </div>
         </div>
 
-        <div class="timeline-item reveal-right">
-          <div class="timeline-dot education"></div>
+        <div class="timeline-item reveal-right" role="listitem">
+          <div class="timeline-dot education" aria-hidden="true"></div>
           <div class="timeline-content glass education-card">
             <span class="timeline-date">2025 — Current</span>
             <h3 class="timeline-role">BSc in Computer Science</h3>
             <p class="timeline-company">Bangladesh Army University of Science and Technology (BAUST)</p>
-            <p class="timeline-desc">Currently pursuing a Bachelor’s degree in Computer Science. Focused on learning
-              programming fundamentals, algorithms, and software development while building projects using C/C++
-              and modern web technologies.</p>
+            <p class="timeline-desc">Currently pursuing a Bachelor's degree in Computer Science. Focused on learning programming fundamentals, algorithms, and software development while building projects using C/C++ and modern web technologies.</p>
             <div class="timeline-tags">
               <span class="tag">C/C++</span>
-              <span class="tag">Data Structures & Algorithms</span>
+              <span class="tag">Data Structures &amp; Algorithms</span>
               <span class="tag">Problem Solving</span>
             </div>
           </div>
@@ -806,14 +723,14 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════
        CONTACT SECTION
-  ═══════════════════════════════════════════════ -->
-  <section id="contact">
+  ══════════════════════════════════════════════════ -->
+  <section id="contact" aria-labelledby="contact-heading">
     <div class="container">
       <div class="section-header">
         <span class="section-tag reveal-up">05 / Contact</span>
-        <h2 class="section-title reveal-up delay-1">Let's Build Together</h2>
+        <h2 id="contact-heading" class="section-title reveal-up delay-1">Let's Build Together</h2>
         <p class="section-subtitle reveal-up delay-2">
           Have a project in mind? I'm currently open to freelance and full-time opportunities.
         </p>
@@ -824,7 +741,7 @@
         <!-- Contact info -->
         <div class="contact-info reveal-left">
           <div class="contact-item glass">
-            <div class="contact-icon">
+            <div class="contact-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
@@ -832,11 +749,12 @@
             </div>
             <div>
               <p class="contact-label">Email</p>
-              <p class="contact-value">tanvirahammad890@gmail.com</p>
+              <a href="mailto:tanvirahammad890@gmail.com" class="contact-value">tanvirahammad890@gmail.com</a>
             </div>
           </div>
+
           <div class="contact-item glass">
-            <div class="contact-icon">
+            <div class="contact-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                 <circle cx="12" cy="10" r="3" />
@@ -847,8 +765,9 @@
               <p class="contact-value">Barura, Cumilla, Bangladesh</p>
             </div>
           </div>
+
           <div class="contact-item glass">
-            <div class="contact-icon">
+            <div class="contact-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
@@ -856,31 +775,25 @@
             </div>
             <div>
               <p class="contact-label">Availability</p>
-              <p class="contact-value">Open to opportunities</p>
+              <p class="contact-value contact-value--open">
+                <span class="availability-dot" aria-hidden="true"></span>
+                Open to opportunities
+              </p>
             </div>
           </div>
 
           <!-- Social links -->
           <div class="contact-socials">
-            <a href="https://github.com/tanvirahammad-007" target="_blank" class="social-btn">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-              </svg>
+            <a href="https://github.com/tanvirahammad-007" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
               GitHub
             </a>
-            <a href="https://www.linkedin.com/in/tanvir-ahammad-007-975970388/" target="_blank" class="social-btn">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
+            <a href="https://www.linkedin.com/in/tanvir-ahammad-007-975970388/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               LinkedIn
             </a>
-            <a href="https://x.com/AhammadTan94659" target="_blank" class="social-btn">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
+            <a href="https://x.com/AhammadTan94659" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Twitter/X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               Twitter/X
             </a>
           </div>
@@ -888,34 +801,35 @@
 
         <!-- Contact form -->
         <div class="contact-form-wrap reveal-right">
-          <form class="contact-form glass" id="contact-form">
+          <form class="contact-form glass" id="contact-form" novalidate>
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Tanvir Ahammad" required />
+                <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="tanvirahammad890@gmail.com" required />
+                <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required />
               </div>
             </div>
             <div class="form-group">
               <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="About project" />
+              <input type="text" id="subject" name="subject" placeholder="About a project..." />
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..."
-                required></textarea>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full">
               <span>Send Message</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <line x1="22" y1="2" x2="11" y2="13" />
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
               </svg>
             </button>
-            <p class="form-success" id="form-success">✓ Message sent! I'll get back to you soon.</p>
+            <p class="form-success" id="form-success" role="status" aria-live="polite" hidden>
+              ✓ Message sent! I'll get back to you soon.
+            </p>
           </form>
         </div>
 
@@ -923,16 +837,18 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════
        FOOTER
-  ═══════════════════════════════════════════════ -->
+  ══════════════════════════════════════════════════ -->
   <footer>
     <div class="footer-inner">
-      <p class="footer-logo"><span class="logo-bracket">&lt;</span>TA<span class="logo-bracket">/&gt;</span></p>
+      <a href="#hero" class="footer-logo" aria-label="Back to top">
+        <span class="logo-bracket">&lt;</span>TA<span class="logo-bracket">/&gt;</span>
+      </a>
       <p class="footer-copy">© 2025 Tanvir Ahammad. Crafted with ☕ and obsessive attention to detail.</p>
-      <a href="#hero" class="back-to-top" id="back-to-top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="18 15 12 9 6 15" />
+      <a href="#hero" class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="18 15 12 9 6 15"/>
         </svg>
       </a>
     </div>
@@ -940,5 +856,4 @@
 
   <script src="script.js"></script>
 </body>
-
 </html>
