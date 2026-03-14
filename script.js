@@ -634,48 +634,159 @@ function initTiltCards() {
    CONTACT FORM — UI feedback (no backend in this version)
 ═══════════════════════════════════════════════════════ */
 function initContactForm() {
-  var form    = document.getElementById('contact-form');
-  var success = document.getElementById('form-success');
+  var form = document.getElementById('contact-form');
   if (!form) return;
 
+  /* ── Mirror user email into the hidden replyto field in real time ── */
+  var emailInput   = document.getElementById('email');
+  var replytoField = document.getElementById('form-replyto');
+  var subjectInput = document.getElementById('subject');
+  var subjectHidden = document.getElementById('form-subject-hidden');
+
+  if (emailInput && replytoField) {
+    emailInput.addEventListener('input', function () {
+      replytoField.value = emailInput.value.trim();
+    });
+  }
+  /* Mirror visible subject into hidden subject field (Web3Forms uses "subject") */
+  if (subjectInput && subjectHidden) {
+    subjectInput.addEventListener('input', function () {
+      var val = subjectInput.value.trim();
+      subjectHidden.value = val
+        ? 'Portfolio Contact: ' + val
+        : 'Portfolio Contact';
+    });
+  }
+
+  /* ── UI elements ── */
+  var successEl = document.getElementById('form-success');
+  var errorEl   = document.getElementById('form-error');
+  var btn       = form.querySelector('button[type="submit"]');
+  var span      = btn ? btn.querySelector('span') : null;
+
+  function setBtn(text, disabled, extraStyle) {
+    if (span)  { span.textContent = text; }
+    if (btn)   {
+      btn.disabled = !!disabled;
+      btn.classList.toggle('btn-sending', !!disabled);
+      btn.style.background = extraStyle || '';
+    }
+  }
+
+  function showSuccess() {
+    if (successEl) { successEl.hidden = false; successEl.style.display = 'block'; }
+    if (errorEl)   { errorEl.textContent = ''; errorEl.style.display = 'none'; }
+  }
+
+  function showError(msg) {
+    if (errorEl)   {
+      errorEl.textContent = msg;
+      errorEl.style.display = 'block';
+    }
+    if (successEl) { successEl.hidden = true; successEl.style.display = 'none'; }
+  }
+
+  function hideMessages() {
+    if (successEl) { successEl.hidden = true; successEl.style.display = 'none'; }
+    if (errorEl)   { errorEl.textContent = ''; errorEl.style.display = 'none'; }
+  }
+
+  /* ── Clear individual field errors on input ── */
+  form.querySelectorAll('input, textarea').forEach(function (field) {
+    field.addEventListener('input', function () {
+      field.classList.remove('error');
+      var err = field.parentElement.querySelector('.field-error');
+      if (err) err.remove();
+    });
+  });
+
+  /* ── Client-side validation ── */
+  function validate() {
+    form.querySelectorAll('.error').forEach(function (el) { el.classList.remove('error'); });
+    form.querySelectorAll('.field-error').forEach(function (el) { el.remove(); });
+
+    var ok = true;
+
+    function markError(fieldId, msg) {
+      var field = document.getElementById(fieldId);
+      if (!field) return;
+      field.classList.add('error');
+      var sp = document.createElement('span');
+      sp.className = 'field-error';
+      sp.textContent = msg;
+      field.parentElement.appendChild(sp);
+      if (ok) field.focus();   /* focus the first invalid field */
+      ok = false;
+    }
+
+    var nameVal    = (document.getElementById('name')    || {}).value || '';
+    var emailVal   = (document.getElementById('email')   || {}).value || '';
+    var messageVal = (document.getElementById('message') || {}).value || '';
+
+    if (nameVal.trim().length < 2) {
+      markError('name', 'Please enter your name (min 2 characters)');
+    }
+    if (!emailVal.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal.trim())) {
+      markError('email', 'Please enter a valid email address');
+    }
+    if (messageVal.trim().length < 10) {
+      markError('message', 'Please write a message (min 10 characters)');
+    }
+
+    return ok;
+  }
+
+  /* ── Submit: send via Web3Forms fetch API ── */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    hideMessages();
 
-    var btn  = form.querySelector('button[type="submit"]');
-    var span = btn ? btn.querySelector('span') : null;
+    if (!validate()) return;
 
-    if (btn) {
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
+    /* Sync replyto one more time before sending */
+    if (emailInput && replytoField) {
+      replytoField.value = emailInput.value.trim();
     }
-    if (span) span.textContent = 'Sending…';
 
-    // Simulate send (replace with real API call if needed)
-    setTimeout(function () {
-      if (span) span.textContent = 'Sent ✓';
-      if (btn) {
-        btn.style.opacity = '1';
-        btn.style.background = 'linear-gradient(135deg, #00c9a7, #00a389)';
-      }
-      if (success) {
-        success.hidden = false;
-        success.style.display = 'block';
-      }
-      form.reset();
+    setBtn('Sending…', true);
 
-      // Reset after 4s
-      setTimeout(function () {
-        if (span) span.textContent = 'Send Message';
-        if (btn) {
-          btn.style.background = '';
-          btn.disabled = false;
-        }
-        if (success) {
-          success.hidden = true;
-          success.style.display = '';
-        }
-      }, 4000);
-    }, 1400);
+    /* Collect all form data including hidden fields */
+    var data = new FormData(form);
+    var json = {};
+    data.forEach(function (val, key) { json[key] = val; });
+
+    fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(json)
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.success) {
+        /* ✅ Delivered */
+        setBtn('Sent ✓', false, 'linear-gradient(135deg, #00c9a7, #00a389)');
+        showSuccess();
+        form.reset();
+        /* Reset replyto & subject hidden fields after reset */
+        if (replytoField)  { replytoField.value  = ''; }
+        if (subjectHidden) { subjectHidden.value  = 'Portfolio Contact'; }
+
+        setTimeout(function () {
+          setBtn('Send Message', false, '');
+          hideMessages();
+        }, 5000);
+
+      } else {
+        /* Web3Forms returned an error (e.g. wrong access key) */
+        showError('⚠️  ' + (data.message || 'Something went wrong. Please try again.'));
+        setBtn('Send Message', false);
+      }
+    })
+    .catch(function () {
+      /* Network error */
+      showError('⚠️  No connection. Email me directly: tanvirahammad890@gmail.com');
+      setBtn('Send Message', false);
+    });
   });
 }
 
