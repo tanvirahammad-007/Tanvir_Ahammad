@@ -1,6 +1,6 @@
 # 🌐 Tanvir Ahammad — Developer Portfolio
 
-A modern, fully responsive personal portfolio website built with pure **HTML, CSS, and JavaScript** — no frameworks, no build tools. High-end animations, glassmorphism design, and a premium custom cursor inspired by [suryanshsva.framer.website](https://suryanshsva.framer.website/).
+A modern, fully responsive personal portfolio website built with pure **HTML, CSS, and JavaScript** — no frameworks, no build tools. High-end animations, glassmorphism design, and a premium custom cursor. 
 
 > **v4 — Fully Refactored** — All bugs fixed, responsive on every device, upgraded cursor, production-ready code.
 
