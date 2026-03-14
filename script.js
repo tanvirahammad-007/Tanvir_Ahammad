@@ -752,7 +752,7 @@ function initMusic() {
   var firstPlay = true;
   var toastTimer;
 
-  audio.volume = 0.45;
+  audio.volume = 0.08;
 
   // Create toast element
   var toast = document.createElement('div');
@@ -794,7 +794,7 @@ function initMusic() {
       playing = true;
       btn.classList.add('playing');
       btn.setAttribute('aria-label', 'Pause background music');
-      fadeTo(0.45, 900);
+      fadeTo(0.08, 900);
       showToast(firstPlay ? '♪  Now Playing — Lo-fi Beats' : '♪  Music resumed');
       firstPlay = false;
       try { localStorage.setItem('portfolio_music', 'playing'); } catch (_) {}
