@@ -73,13 +73,15 @@ A modern, fully responsive personal portfolio website built with pure **HTML, CS
 ## 📁 Project Structure
 
 ```
-portfolio/
+Tanvir_Ahammad/
 │
 ├── index.html       ← Full website markup (893 lines)
 ├── style.css        ← All styles + animations + responsive (2012 lines)
 ├── script.js        ← All interactions + effects (471 lines)
 ├── myphoto.jpg      ← Profile photo (place in same folder)
-└── README.md        ← This file
+├── favicon.png      ← Icon
+├── music.mp3 
+└── README.md
 ```
 
 ---
