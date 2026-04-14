@@ -34,12 +34,12 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
    2. DARK / LIGHT THEME TOGGLE  (NEW v5)
 ════════════════════════════════════════════════════════ */
 (function initTheme() {
-  const html   = document.documentElement;
-  const btn    = $('#theme-toggle');
-  const STORE  = 'ta-theme';
+  const html = document.documentElement;
+  const btn = $('#theme-toggle');
+  const STORE = 'ta-theme';
 
   // Restore saved preference, else respect OS preference
-  const saved  = localStorage.getItem(STORE);
+  const saved = localStorage.getItem(STORE);
   const prefer = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   const active = saved || prefer;
   html.setAttribute('data-theme', active);
@@ -76,12 +76,12 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   let W, H, particles = [], raf;
   const DESKTOP = () => window.innerWidth >= 480;
 
-  const ACCENT   = '#00f5d4';
-  const ACCENT2  = '#7b61ff';
+  const ACCENT = '#00f5d4';
+  const ACCENT2 = '#7b61ff';
   const MAX_DIST = 130;
 
   function resize() {
-    W = canvas.width  = window.innerWidth;
+    W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
     // Recalculate count
     const count = DESKTOP() ? Math.min(60, Math.floor((W * H) / 18000)) : 20;
@@ -160,7 +160,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
    5. NAVBAR — scroll class + active link via IntersectionObserver
 ════════════════════════════════════════════════════════ */
 (function initNavbar() {
-  const navbar  = $('#navbar');
+  const navbar = $('#navbar');
   const navLinks = $$('.nav-link, .mobile-link');
   const sections = $$('section[id]');
 
@@ -189,8 +189,8 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 ════════════════════════════════════════════════════════ */
 (function initMobileMenu() {
   const hamburger = $('#hamburger');
-  const menu      = $('#mobile-menu');
-  const closeBtn  = $('#mobile-menu-close');
+  const menu = $('#mobile-menu');
+  const closeBtn = $('#mobile-menu-close');
   const mobileLinks = $$('.mobile-link');
 
   if (!hamburger || !menu) return;
@@ -213,7 +213,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   }
 
   hamburger.addEventListener('click', openMenu);
-  closeBtn  && closeBtn.addEventListener('click', closeMenu);
+  closeBtn && closeBtn.addEventListener('click', closeMenu);
   mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
 
   // Close on outside click / Escape
@@ -245,13 +245,13 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   const el = $('#typing-text');
   if (!el) return;
 
-const phrases = [
-  'C/C++ Programs',
-  'Simple Web Apps',
-  'Coding Ideas',
-  'Coding Projects',
-  'Clean UI Websites'
-];
+  const phrases = [
+    'C/C++ Programs',
+    'Simple Web Apps',
+    'Coding Ideas',
+    'Coding Projects',
+    'Clean UI Websites'
+  ];
 
   let pi = 0, ci = 0, isDeleting = false;
 
@@ -290,13 +290,13 @@ const phrases = [
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const el     = entry.target;
+      const el = entry.target;
       const target = +el.dataset.target;
-      const start  = performance.now();
-      const dur    = 1800;
+      const start = performance.now();
+      const dur = 1800;
 
       function step(now) {
-        const t   = Math.min((now - start) / dur, 1);
+        const t = Math.min((now - start) / dur, 1);
         // Ease out cubic
         const ease = 1 - (1 - t) ** 3;
         el.textContent = Math.round(ease * target);
@@ -315,8 +315,8 @@ const phrases = [
    10. SKILLS TABS + ANIMATED BARS
 ════════════════════════════════════════════════════════ */
 (function initSkills() {
-  const tabBtns  = $$('.tab-btn');
-  const panels   = $$('.skills-panel');
+  const tabBtns = $$('.tab-btn');
+  const panels = $$('.skills-panel');
 
   // Animate a set of bars
   function animateBars(panel) {
@@ -376,8 +376,8 @@ const phrases = [
   $$('.tilt-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width  - 0.5;
-      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
       card.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
     });
     card.addEventListener('mouseleave', () => {
@@ -390,8 +390,8 @@ const phrases = [
   if (heroTilt) {
     heroTilt.addEventListener('mousemove', e => {
       const rect = heroTilt.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width  - 0.5;
-      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
       heroTilt.style.transform = `perspective(600px) rotateY(${x * 14}deg) rotateX(${-y * 12}deg)`;
     });
     heroTilt.addEventListener('mouseleave', () => { heroTilt.style.transform = ''; });
@@ -402,7 +402,7 @@ const phrases = [
    12. MUSIC PLAYER  (toggle + keyboard shortcut M)
 ════════════════════════════════════════════════════════ */
 (function initMusic() {
-  const btn   = $('#music-btn');
+  const btn = $('#music-btn');
   const audio = $('#bg-music');
   if (!btn || !audio) return;
 
@@ -415,7 +415,7 @@ const phrases = [
       btn.setAttribute('aria-label', 'Play background music');
     } else {
       audio.volume = 0.10;  // gentle background volume (10%)
-      audio.play().catch(() => {}); // autoplay may be blocked — silently fail
+      audio.play().catch(() => { }); // autoplay may be blocked — silently fail
       btn.classList.add('playing');
       btn.setAttribute('aria-label', 'Pause background music');
     }
@@ -428,61 +428,123 @@ const phrases = [
   document.addEventListener('keydown', e => {
     if (e.key === 'm' || e.key === 'M') {
       // Don't fire when typing in a field
-      if (['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)) return;
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
       toggle();
     }
   });
 })();
 
 /* ════════════════════════════════════════════════════════
-   13. PROJECT FILTER BUTTONS  (NEW v5)
+   13. PROJECT FILTER + LOAD MORE
+   - "All" shows first 6 cards + Load More button for rest
+   - Category filters show ALL matching cards (no limit)
+   - Load More reveals the hidden extra cards with animation
 ════════════════════════════════════════════════════════ */
 (function initProjectFilters() {
-  const btns  = $$('.filter-btn');
+  const btns = $$('.filter-btn');
   const cards = $$('.project-card');
+  const loadMoreBtn = $('#load-more-btn');
+  const loadMoreWrap = $('#load-more-wrap');
+  const INITIAL = 6; // cards shown before "Load More"
+
   if (!btns.length) return;
 
+  // Track state
+  let currentFilter = 'all';
+  let allLoaded = false;
+
+  // Apply initial state — show first 6, hide rest, show Load More
+  function applyInitialAll() {
+    allLoaded = false;
+    cards.forEach((card, i) => {
+      card.classList.remove('hidden', 'extra-hidden');
+      if (i >= INITIAL) {
+        card.classList.add('extra-hidden'); // beyond-6 class
+      }
+    });
+    // Show Load More only if there are cards beyond 6
+    if (loadMoreWrap) {
+      loadMoreWrap.style.display = cards.length > INITIAL ? 'flex' : 'none';
+    }
+    if (loadMoreBtn) loadMoreBtn.querySelector('span').textContent = 'Load More';
+  }
+
+  // Apply a category filter — show ALL matching, hide non-matching, no Load More
+  function applyFilter(filter) {
+    allLoaded = false;
+    cards.forEach(card => {
+      card.classList.remove('hidden', 'extra-hidden');
+      const tags = (card.dataset.tags || '').split(' ');
+      if (!tags.includes(filter)) {
+        card.classList.add('hidden');
+      }
+    });
+    if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+  }
+
+  // Initialise
+  applyInitialAll();
+
+  // Filter button clicks
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
+      currentFilter = filter;
 
-      // Update active button
       btns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // Show / hide cards
-      cards.forEach(card => {
-        if (filter === 'all') {
-          card.classList.remove('hidden');
-        } else {
-          const tags = (card.dataset.tags || '').split(' ');
-          card.classList.toggle('hidden', !tags.includes(filter));
-        }
-      });
+      if (filter === 'all') {
+        applyInitialAll();
+      } else {
+        applyFilter(filter);
+      }
     });
   });
+
+  // Load More click
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+      if (!allLoaded) {
+        // Reveal all extra-hidden cards with stagger
+        const extras = cards.filter(c => c.classList.contains('extra-hidden'));
+        extras.forEach((card, i) => {
+          card.classList.remove('extra-hidden');
+          card.style.animationDelay = `${i * 0.08}s`;
+          card.classList.add('load-more-reveal');
+          // Clean up after animation
+          card.addEventListener('animationend', () => {
+            card.style.animationDelay = '';
+            card.classList.remove('load-more-reveal');
+          }, { once: true });
+        });
+        allLoaded = true;
+        if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+      }
+    });
+  }
 })();
 
 /* ════════════════════════════════════════════════════════
    14. REAL-TIME FORM VALIDATION  (NEW v5)
 ════════════════════════════════════════════════════════ */
 (function initFormValidation() {
-  const nameInput    = $('#name');
-  const emailInput   = $('#email');
-  const messageArea  = $('#message');
+  const nameInput = $('#name');
+  const emailInput = $('#email');
+  const messageArea = $('#message');
 
   function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
   function setValidity(el, valid) {
     if (!el) return;
-    el.classList.toggle('valid',   valid);
+    el.classList.toggle('valid', valid);
     el.classList.toggle('invalid', !valid);
   }
 
   // Validate on blur (not on every keypress — less annoying)
-  nameInput   && nameInput.addEventListener('blur',  () => setValidity(nameInput,   nameInput.value.trim().length >= 2));
-  emailInput  && emailInput.addEventListener('blur', () => setValidity(emailInput,  validateEmail(emailInput.value.trim())));
-  messageArea && messageArea.addEventListener('blur',() => setValidity(messageArea, messageArea.value.trim().length >= 10));
+  nameInput && nameInput.addEventListener('blur', () => setValidity(nameInput, nameInput.value.trim().length >= 2));
+  emailInput && emailInput.addEventListener('blur', () => setValidity(emailInput, validateEmail(emailInput.value.trim())));
+  messageArea && messageArea.addEventListener('blur', () => setValidity(messageArea, messageArea.value.trim().length >= 10));
 
   // Update replyto hidden field from email
   emailInput && emailInput.addEventListener('input', () => {
@@ -502,9 +564,9 @@ const phrases = [
    15. CONTACT FORM SUBMIT  (Web3Forms)
 ════════════════════════════════════════════════════════ */
 (function initContactForm() {
-  const form      = $('#contact-form');
+  const form = $('#contact-form');
   const successEl = $('#form-success');
-  const errorEl   = $('#form-error');
+  const errorEl = $('#form-error');
   const submitBtn = $('#form-submit-btn');
   if (!form) return;
 
@@ -512,8 +574,8 @@ const phrases = [
     e.preventDefault();
 
     // Client-side required check
-    const name    = $('#name')?.value.trim();
-    const email   = $('#email')?.value.trim();
+    const name = $('#name')?.value.trim();
+    const email = $('#email')?.value.trim();
     const message = $('#message')?.value.trim();
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -528,7 +590,7 @@ const phrases = [
 
     try {
       const data = new FormData(form);
-      const res  = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: data,
       });
@@ -538,7 +600,7 @@ const phrases = [
         if (successEl) { successEl.hidden = false; }
         form.reset();
         // Clear validity indicators
-        $$('.valid, .invalid', form).forEach(el => el.classList.remove('valid','invalid'));
+        $$('.valid, .invalid', form).forEach(el => el.classList.remove('valid', 'invalid'));
       } else {
         throw new Error(json.message || 'Submission failed');
       }
@@ -556,7 +618,7 @@ const phrases = [
 (function initKeyboardShortcuts() {
   document.addEventListener('keydown', e => {
     // Don't fire inside inputs / textareas
-    if (['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) return;
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
 
     // T: toggle theme
     if (e.key === 't' || e.key === 'T') {
@@ -574,7 +636,7 @@ const phrases = [
   if (!orbs.length) return;
 
   document.addEventListener('mousemove', e => {
-    const cx = (e.clientX / window.innerWidth  - 0.5) * 2;
+    const cx = (e.clientX / window.innerWidth - 0.5) * 2;
     const cy = (e.clientY / window.innerHeight - 0.5) * 2;
     orbs.forEach((orb, i) => {
       const factor = (i + 1) * 10;

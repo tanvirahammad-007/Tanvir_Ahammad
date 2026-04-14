@@ -491,63 +491,88 @@
         <span class="section-tag reveal-up">03 / Projects</span>
         <h2 id="projects-heading" class="section-title reveal-up delay-1">What I've Built</h2>
         <p class="section-subtitle reveal-up delay-2">
-          A selection of projects showcasing my range — from browser games to multiplayer apps and C++ internship work.
+          A selection of projects showcasing my range — from manual builds and vibe coding to competitions, C++ internship work, and full-stack apps.
         </p>
       </div>
 
-      <!-- NEW v5: Filter buttons -->
-      <div class="project-filters reveal-up delay-2" role="group" aria-label="Filter projects by technology">
+      <!-- Filter buttons -->
+      <div class="project-filters reveal-up delay-2" role="group" aria-label="Filter projects by category">
         <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="js">JavaScript</button>
-        <button class="filter-btn" data-filter="cpp">C++</button>
-        <button class="filter-btn" data-filter="firebase">Firebase</button>
+        <button class="filter-btn" data-filter="manual">Manual Projects</button>
+        <button class="filter-btn" data-filter="vibe">Vibe Coding</button>
+        <button class="filter-btn" data-filter="competition">Competition</button>
+        <button class="filter-btn" data-filter="cpp">C/C++ Projects</button>
+        <button class="filter-btn" data-filter="fullstack">Full Stack</button>
       </div>
 
-      <div class="projects-grid">
+      <div class="projects-grid" id="projects-grid">
 
-        <!-- 1. Guess The Number -->
-        <article class="project-card tilt-card reveal-up" data-tags="js">
+        <!-- 1. ZeroXPoint — Vibe Coding + Full Stack (card 1 = always visible) -->
+        <article class="project-card tilt-card reveal-up" data-tags="vibe fullstack" data-index="1">
+          <div class="project-card-inner">
+            <div class="project-thumbnail" style="--project-accent:#00f5d4">
+              <div class="project-mockup">
+                <div class="mock-quote">
+                  <div class="quote-mark" style="color:var(--accent)">&#x3C;/&#x3E;</div>
+                  <div class="quote-text" style="color:var(--accent);font-family:var(--font-mono);font-size:0.8rem;">ZeroXPoint</div>
+                  <div class="quote-author">Full Stack App</div>
+                  <div class="quote-btn-mock">Live ↗</div>
+                </div>
+              </div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(0,245,212,0.2),transparent 70%)" aria-hidden="true"></div>
+            </div>
+            <div class="project-info">
+              <div class="project-tags">
+                <span class="tag">Full Stack</span><span class="tag">Vibe Coding</span><span class="tag">Vercel</span>
+              </div>
+              <h3 class="project-title">ZeroXPoint</h3>
+              <p class="project-desc">A full-stack web application built with vibe coding — fast iteration, creative problem solving, and modern deployment via Vercel.</p>
+              <ul class="project-features">
+                <li>🚀 Deployed on Vercel</li>
+                <li>⚡ Full-stack architecture</li>
+                <li>🎨 Modern UI/UX</li>
+              </ul>
+              <div class="project-links">
+                <a href="https://zeroxpoint.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                  Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Guess The Number — Manual -->
+        <article class="project-card tilt-card reveal-up delay-1" data-tags="manual" data-index="2">
           <div class="project-card-inner">
             <div class="project-thumbnail" style="--project-accent:#7b61ff">
               <div class="project-mockup">
                 <div class="mock-game">
                   <div class="game-header">🎯 Guess The Number</div>
                   <div class="game-display">?</div>
-                  <div class="game-input-mock">
-                    <span>Enter: 1–100</span>
-                  </div>
+                  <div class="game-input-mock"><span>Enter: 1–100</span></div>
                 </div>
               </div>
-              <div class="project-glow" style="background:radial-gradient(circle,rgba(123,97,255,0.2),transparent 70%)"
-                aria-hidden="true"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(123,97,255,0.2),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
               </div>
               <h3 class="project-title">Guess The Number</h3>
-              <p class="project-desc">Classic number guessing game with score tracking, hot/cold feedback, and
-                high-score persistence using localStorage. Smooth UI with win/lose animations.</p>
-              <!-- NEW v5: Feature list -->
+              <p class="project-desc">Classic number guessing game with score tracking, hot/cold feedback, and high-score persistence using localStorage. Smooth UI with win/lose animations.</p>
               <ul class="project-features">
                 <li>🏆 High score tracking</li>
                 <li>🔥 Hot / cold proximity hints</li>
                 <li>🎨 Win/lose animations</li>
               </ul>
               <div class="project-links">
-                <a href="https://github.com/tanvirahammad-007/Guess-The-Number" target="_blank"
-                  rel="noopener noreferrer" class="project-link">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Guess-The-Number" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-                <a href="https://tanvirahammad-007.github.io/Guess-The-Number/" target="_blank"
-                  rel="noopener noreferrer" class="project-link project-link--live">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://tanvirahammad-007.github.io/Guess-The-Number/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Live Demo
                 </a>
               </div>
@@ -555,51 +580,40 @@
           </div>
         </article>
 
-        <!-- 2. Pig Dice Game -->
-        <article class="project-card tilt-card reveal-up delay-1" data-tags="js">
+        <!-- 3. Pig Dice Game — Manual -->
+        <article class="project-card tilt-card reveal-up delay-2" data-tags="manual" data-index="3">
           <div class="project-card-inner">
             <div class="project-thumbnail" style="--project-accent:#f7931a">
               <div class="project-mockup">
                 <div class="mock-dice">
                   <div class="dice-display">🎲</div>
-                  <div class="dice-scores">
-                    <span>P1: 34</span><span>P2: 21</span>
-                  </div>
+                  <div class="dice-scores"><span>P1: 34</span><span>P2: 21</span></div>
                   <div class="dice-actions">
                     <span class="dice-btn-mock">Roll</span>
                     <span class="dice-btn-mock">Hold</span>
                   </div>
                 </div>
               </div>
-              <div class="project-glow" style="background:radial-gradient(circle,rgba(247,147,26,0.2),transparent 70%)"
-                aria-hidden="true"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(247,147,26,0.2),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
               </div>
               <h3 class="project-title">Pig Dice Game</h3>
-              <p class="project-desc">Two-player turn-based dice game. Roll to accumulate points, but bank them before
-                rolling a 1 or lose your turn. Features score persistence and animated dice.</p>
+              <p class="project-desc">Two-player turn-based dice game. Roll to accumulate points, but bank them before rolling a 1 or lose your turn. Features score persistence and animated dice.</p>
               <ul class="project-features">
                 <li>🎲 Animated dice rolls</li>
                 <li>👥 2-player turn system</li>
                 <li>⚡ Risk/reward mechanics</li>
               </ul>
               <div class="project-links">
-                <a href="https://github.com/tanvirahammad-007/Pig-Dice-Game" target="_blank" rel="noopener noreferrer"
-                  class="project-link">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Pig-Dice-Game" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-                <a href="https://tanvirahammad-007.github.io/Pig-Dice-Game/" target="_blank" rel="noopener noreferrer"
-                  class="project-link project-link--live">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://tanvirahammad-007.github.io/Pig-Dice-Game/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Live Demo
                 </a>
               </div>
@@ -607,8 +621,8 @@
           </div>
         </article>
 
-        <!-- 3. Words to Inspire -->
-        <article class="project-card tilt-card reveal-up delay-2" data-tags="js">
+        <!-- 4. Words to Inspire — Manual -->
+        <article class="project-card tilt-card reveal-up" data-tags="manual" data-index="4">
           <div class="project-card-inner">
             <div class="project-thumbnail" style="--project-accent:#00f5d4">
               <div class="project-mockup">
@@ -619,35 +633,26 @@
                   <div class="quote-btn-mock">New Quote</div>
                 </div>
               </div>
-              <div class="project-glow" style="background:radial-gradient(circle,rgba(0,245,212,0.15),transparent 70%)"
-                aria-hidden="true"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(0,245,212,0.15),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
               </div>
               <h3 class="project-title">Words to Inspire</h3>
-              <p class="project-desc">Inspirational quote generator with smooth fade transitions, Twitter share
-                integration, and copy-to-clipboard functionality. Clean minimal design.</p>
+              <p class="project-desc">Inspirational quote generator with smooth fade transitions, Twitter share integration, and copy-to-clipboard functionality. Clean minimal design.</p>
               <ul class="project-features">
                 <li>✨ Smooth fade transitions</li>
                 <li>🐦 One-click Twitter share</li>
                 <li>📋 Copy to clipboard</li>
               </ul>
               <div class="project-links">
-                <a href="https://github.com/tanvirahammad-007/Words-to-Inspire" target="_blank"
-                  rel="noopener noreferrer" class="project-link">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Words-to-Inspire" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-                <a href="https://tanvirahammad-007.github.io/Words-to-Inspire/" target="_blank"
-                  rel="noopener noreferrer" class="project-link project-link--live">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://tanvirahammad-007.github.io/Words-to-Inspire/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Live Demo
                 </a>
               </div>
@@ -655,8 +660,8 @@
           </div>
         </article>
 
-        <!-- 4. TicTacToe Offline (AI) -->
-        <article class="project-card tilt-card reveal-up" data-tags="js">
+        <!-- 5. TicTacToe Offline AI — Competition -->
+        <article class="project-card tilt-card reveal-up delay-1" data-tags="competition" data-index="5">
           <div class="project-card-inner">
             <div class="project-thumbnail" style="--project-accent:#7b61ff">
               <div class="project-mockup">
@@ -669,35 +674,26 @@
                   <div class="ttt-label" style="color:var(--accent)">X Wins! 🏆</div>
                 </div>
               </div>
-              <div class="project-glow" style="background:radial-gradient(circle,rgba(123,97,255,0.2),transparent 70%)"
-                aria-hidden="true"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(123,97,255,0.2),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">JavaScript</span><span class="tag">Minimax AI</span>
               </div>
               <h3 class="project-title">TicTacToe — AI Opponent</h3>
-              <p class="project-desc">Offline TicTacToe with an unbeatable Minimax AI. Features human vs AI and human vs
-                human modes with smooth win detection animations.</p>
+              <p class="project-desc">Offline TicTacToe with an unbeatable Minimax AI. Features human vs AI and human vs human modes with smooth win detection animations.</p>
               <ul class="project-features">
                 <li>🤖 Unbeatable Minimax AI</li>
                 <li>🎮 Human vs Human mode</li>
                 <li>🎯 Win line animation</li>
               </ul>
               <div class="project-links">
-                <a href="https://github.com/tanvirahammad-007/Tic-Tac-Toe" target="_blank" rel="noopener noreferrer"
-                  class="project-link">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Tic-Tac-Toe" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-                <a href="https://tanvirahammad-007.github.io/Tic-Tac-Toe/" target="_blank" rel="noopener noreferrer"
-                  class="project-link project-link--live">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://tanvirahammad-007.github.io/Tic-Tac-Toe/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Live Demo
                 </a>
               </div>
@@ -705,16 +701,15 @@
           </div>
         </article>
 
-        <!-- 5. TicTacToe Online (Firebase) -->
-        <article class="project-card tilt-card reveal-up delay-1" data-tags="js firebase">
+        <!-- 6. TicTacToe Online Firebase — Competition (last of initial 6) -->
+        <article class="project-card tilt-card reveal-up delay-2" data-tags="competition" data-index="6">
           <div class="project-card-inner">
             <div class="project-thumbnail" style="--project-accent:#ff6b6b">
               <div class="project-mockup">
                 <div class="mock-online">
                   <div class="online-header">
                     <span class="online-dot" aria-hidden="true"></span>
-                    <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent)">2 players
-                      online</span>
+                    <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--accent)">2 players online</span>
                   </div>
                   <div class="ttt-grid">
                     <span>X</span><span>O</span><span>X</span>
@@ -724,35 +719,26 @@
                   <div class="ttt-label" style="color:var(--accent-3)">Your turn!</div>
                 </div>
               </div>
-              <div class="project-glow" style="background:radial-gradient(circle,rgba(255,107,107,0.2),transparent 70%)"
-                aria-hidden="true"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(255,107,107,0.2),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
                 <span class="tag">JavaScript</span><span class="tag">Firebase</span><span class="tag">Netlify</span>
               </div>
               <h3 class="project-title">TicTacToe — Online</h3>
-              <p class="project-desc">Real-time multiplayer TicTacToe with Firebase Realtime Database. Create or join
-                rooms and play with friends anywhere in the world.</p>
+              <p class="project-desc">Real-time multiplayer TicTacToe with Firebase Realtime Database. Create or join rooms and play with friends anywhere in the world.</p>
               <ul class="project-features">
                 <li>🌐 Real-time multiplayer</li>
                 <li>🔗 Room create/join system</li>
                 <li>⚡ Firebase live sync</li>
               </ul>
               <div class="project-links">
-                <a href="https://github.com/tanvirahammad-007/Tic-Tac-Toe" target="_blank" rel="noopener noreferrer"
-                  class="project-link">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/Tic-Tac-Toe" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
-                <a href="https://team-believers.netlify.app/" target="_blank" rel="noopener noreferrer"
-                  class="project-link project-link--live">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                  </svg>
+                <a href="https://team-believers.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link project-link--live">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                   Play Online
                 </a>
               </div>
@@ -760,8 +746,8 @@
           </div>
         </article>
 
-        <!-- 6. CodeAlpha C++ Projects -->
-        <article class="project-card tilt-card reveal-up delay-2" data-tags="cpp">
+        <!-- 7. CodeAlpha C++ — hidden initially, shown on Load More -->
+        <article class="project-card tilt-card reveal-up" data-tags="cpp" data-index="7">
           <div class="project-card-inner">
             <div class="project-thumbnail" style="--project-accent:#00f5d4">
               <div class="project-mockup">
@@ -770,8 +756,7 @@
                     <span class="cpp-dot dot-r" aria-hidden="true"></span>
                     <span class="cpp-dot dot-y" aria-hidden="true"></span>
                     <span class="cpp-dot dot-g" aria-hidden="true"></span>
-                    <span
-                      style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-left:0.5rem;">main.cpp</span>
+                    <span style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-left:0.5rem;">main.cpp</span>
                   </div>
                   <div class="cpp-code">
                     <span class="cpp-keyword">#include</span> <span class="cpp-str">&lt;iostream&gt;</span><br>
@@ -782,29 +767,22 @@
                   </div>
                 </div>
               </div>
-              <div class="project-glow" style="background:radial-gradient(circle,rgba(0,245,212,0.15),transparent 70%)"
-                aria-hidden="true"></div>
+              <div class="project-glow" style="background:radial-gradient(circle,rgba(0,245,212,0.15),transparent 70%)" aria-hidden="true"></div>
             </div>
             <div class="project-info">
               <div class="project-tags">
-                <span class="tag">C++</span><span class="tag">STL</span><span class="tag">OOP</span><span
-                  class="tag">Algorithms</span>
+                <span class="tag">C++</span><span class="tag">STL</span><span class="tag">OOP</span><span class="tag">Algorithms</span>
               </div>
               <h3 class="project-title">CodeAlpha C++ Projects</h3>
-              <p class="project-desc">A collection of C++ projects built during the CodeAlpha internship. Covers OOP,
-                STL, algorithms, and core computer science concepts.</p>
+              <p class="project-desc">A collection of C++ projects built during the CodeAlpha internship. Covers OOP, STL, algorithms, and core computer science concepts.</p>
               <ul class="project-features">
-                <li>📦 STL containers & algorithms</li>
+                <li>📦 STL containers &amp; algorithms</li>
                 <li>🏗️ OOP design patterns</li>
                 <li>⚙️ Internship deliverables</li>
               </ul>
               <div class="project-links">
-                <a href="https://github.com/tanvirahammad-007/CodeAlpha_Projects" target="_blank"
-                  rel="noopener noreferrer" class="project-link">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
+                <a href="https://github.com/tanvirahammad-007/CodeAlpha_Projects" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
                   GitHub
                 </a>
               </div>
@@ -813,8 +791,21 @@
         </article>
 
       </div><!-- /.projects-grid -->
+
+      <!-- Load More button — hidden when all cards visible or filter active -->
+      <div class="load-more-wrap" id="load-more-wrap">
+        <button class="btn btn-ghost load-more-btn" id="load-more-btn" aria-label="Load more projects">
+          <span>Load More</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+      </div>
+
     </div>
   </section>
+
+
 
   <!-- ══════════════════════════════════════════════════
        EXPERIENCE SECTION
